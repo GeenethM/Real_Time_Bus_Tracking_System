@@ -1,4 +1,5 @@
 const express = require('express');
+const connectDB = require('./config/db');
 
 const app = express();
 
@@ -16,6 +17,8 @@ const start = async () => {
 };
 
 start();
+
+connectDB();
 
 app.get('/', (req, res) => {
   res.send('Testing');
