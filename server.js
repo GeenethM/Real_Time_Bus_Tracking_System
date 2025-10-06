@@ -2,6 +2,10 @@ const express = require('express');
 
 const app = express();
 
+const authRoutes = require('./routes/authRoutes');
+
+
+
 const port = 4000;
 
 const start = async () => {
@@ -16,6 +20,8 @@ const start = async () => {
 };
 
 start();
+
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Testing');
