@@ -24,6 +24,8 @@ start();
 
 app.use('/api/auth', authRoutes);
 
+connectDB();
+
 app.get('/', (req, res) => {
   res.send('Testing');
 });
