@@ -1,0 +1,352 @@
+[
+  {
+    "routeNumber": "R-001",
+    "routeName": "Colombo to Kandy Express",
+    "startLocation": {
+      "city": "Colombo",
+      "province": "Western",
+      "coordinates": {
+        "latitude": 6.9271,
+        "longitude": 79.8612
+      }
+    },
+    "endLocation": {
+      "city": "Kandy",
+      "province": "Central",
+      "coordinates": {
+        "latitude": 7.2906,
+        "longitude": 80.6337
+      }
+    },
+    "distance": 115,
+    "estimatedDuration": 180,
+    "waypoints": [
+      {
+        "name": "Kadawatha",
+        "coordinates": {
+          "latitude": 7.0008,
+          "longitude": 79.9303
+        },
+        "stopDuration": 5,
+        "distanceFromStart": 15
+      },
+      {
+        "name": "Gampaha",
+        "coordinates": {
+          "latitude": 7.0908,
+          "longitude": 79.9994
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 30
+      },
+      {
+        "name": "Kegalle",
+        "coordinates": {
+          "latitude": 7.2513,
+          "longitude": 80.3464
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 65
+      },
+      {
+        "name": "Mawanella",
+        "coordinates": {
+          "latitude": 7.2506,
+          "longitude": 80.4547
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 85
+      }
+    ],
+    "routeType": "express",
+    "operatingHours": {
+      "startTime": "05:30",
+      "endTime": "22:00"
+    },
+    "frequency": 30,
+    "baseFare": 250,
+    "isActive": true
+  },
+  {
+    "routeNumber": "R-002",
+    "routeName": "Colombo to Galle Coastal",
+    "startLocation": {
+      "city": "Colombo",
+      "province": "Western",
+      "coordinates": {
+        "latitude": 6.9271,
+        "longitude": 79.8612
+      }
+    },
+    "endLocation": {
+      "city": "Galle",
+      "province": "Southern",
+      "coordinates": {
+        "latitude": 6.0535,
+        "longitude": 80.2210
+      }
+    },
+    "distance": 119,
+    "estimatedDuration": 150,
+    "waypoints": [
+      {
+        "name": "Moratuwa",
+        "coordinates": {
+          "latitude": 6.7730,
+          "longitude": 79.8816
+        },
+        "stopDuration": 5,
+        "distanceFromStart": 18
+      },
+      {
+        "name": "Panadura",
+        "coordinates": {
+          "latitude": 6.7132,
+          "longitude": 79.9026
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 27
+      },
+      {
+        "name": "Kalutara",
+        "coordinates": {
+          "latitude": 6.5854,
+          "longitude": 79.9607
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 42
+      },
+      {
+        "name": "Bentota",
+        "coordinates": {
+          "latitude": 6.4269,
+          "longitude": 79.9951
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 65
+      },
+      {
+        "name": "Hikkaduwa",
+        "coordinates": {
+          "latitude": 6.1418,
+          "longitude": 80.1003
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 95
+      }
+    ],
+    "routeType": "semi-express",
+    "operatingHours": {
+      "startTime": "06:00",
+      "endTime": "21:30"
+    },
+    "frequency": 45,
+    "baseFare": 200,
+    "isActive": true
+  },
+  {
+    "routeNumber": "R-003",
+    "routeName": "Colombo to Jaffna Northern Express",
+    "startLocation": {
+      "city": "Colombo",
+      "province": "Western",
+      "coordinates": {
+        "latitude": 6.9271,
+        "longitude": 79.8612
+      }
+    },
+    "endLocation": {
+      "city": "Jaffna",
+      "province": "Northern",
+      "coordinates": {
+        "latitude": 9.6615,
+        "longitude": 80.0255
+      }
+    },
+    "distance": 396,
+    "estimatedDuration": 480,
+    "waypoints": [
+      {
+        "name": "Kurunegala",
+        "coordinates": {
+          "latitude": 7.4867,
+          "longitude": 80.3647
+        },
+        "stopDuration": 20,
+        "distanceFromStart": 104
+      },
+      {
+        "name": "Dambulla",
+        "coordinates": {
+          "latitude": 7.8731,
+          "longitude": 80.6511
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 148
+      },
+      {
+        "name": "Anuradhapura",
+        "coordinates": {
+          "latitude": 8.3114,
+          "longitude": 80.4037
+        },
+        "stopDuration": 25,
+        "distanceFromStart": 206
+      },
+      {
+        "name": "Vavuniya",
+        "coordinates": {
+          "latitude": 8.7542,
+          "longitude": 80.4977
+        },
+        "stopDuration": 20,
+        "distanceFromStart": 263
+      },
+      {
+        "name": "Kilinochchi",
+        "coordinates": {
+          "latitude": 9.3964,
+          "longitude": 80.4011
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 333
+      }
+    ],
+    "routeType": "express",
+    "operatingHours": {
+      "startTime": "05:00",
+      "endTime": "20:00"
+    },
+    "frequency": 120,
+    "baseFare": 800,
+    "isActive": true
+  },
+  {
+    "routeNumber": "R-004",
+    "routeName": "Kandy to Badulla Hill Country",
+    "startLocation": {
+      "city": "Kandy",
+      "province": "Central",
+      "coordinates": {
+        "latitude": 7.2906,
+        "longitude": 80.6337
+      }
+    },
+    "endLocation": {
+      "city": "Badulla",
+      "province": "Uva",
+      "coordinates": {
+        "latitude": 6.9895,
+        "longitude": 81.0557
+      }
+    },
+    "distance": 142,
+    "estimatedDuration": 240,
+    "waypoints": [
+      {
+        "name": "Gampola",
+        "coordinates": {
+          "latitude": 7.1644,
+          "longitude": 80.5756
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 25
+      },
+      {
+        "name": "Nuwara Eliya",
+        "coordinates": {
+          "latitude": 6.9497,
+          "longitude": 80.7891
+        },
+        "stopDuration": 20,
+        "distanceFromStart": 65
+      },
+      {
+        "name": "Welimada",
+        "coordinates": {
+          "latitude": 6.9058,
+          "longitude": 80.9278
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 95
+      },
+      {
+        "name": "Bandarawela",
+        "coordinates": {
+          "latitude": 6.8326,
+          "longitude": 80.9847
+        },
+        "stopDuration": 10,
+        "distanceFromStart": 120
+      }
+    ],
+    "routeType": "normal",
+    "operatingHours": {
+      "startTime": "06:30",
+      "endTime": "18:00"
+    },
+    "frequency": 60,
+    "baseFare": 300,
+    "isActive": true,
+    "difficulty": "difficult"
+  },
+  {
+    "routeNumber": "R-005",
+    "routeName": "Colombo to Batticaloa Eastern Route",
+    "startLocation": {
+      "city": "Colombo",
+      "province": "Western",
+      "coordinates": {
+        "latitude": 6.9271,
+        "longitude": 79.8612
+      }
+    },
+    "endLocation": {
+      "city": "Batticaloa",
+      "province": "Eastern",
+      "coordinates": {
+        "latitude": 7.7102,
+        "longitude": 81.6924
+      }
+    },
+    "distance": 314,
+    "estimatedDuration": 390,
+    "waypoints": [
+      {
+        "name": "Kandy",
+        "coordinates": {
+          "latitude": 7.2906,
+          "longitude": 80.6337
+        },
+        "stopDuration": 20,
+        "distanceFromStart": 115
+      },
+      {
+        "name": "Mahiyangana",
+        "coordinates": {
+          "latitude": 7.3319,
+          "longitude": 81.0075
+        },
+        "stopDuration": 15,
+        "distanceFromStart": 175
+      },
+      {
+        "name": "Polonnaruwa",
+        "coordinates": {
+          "latitude": 7.9403,
+          "longitude": 81.0188
+        },
+        "stopDuration": 25,
+        "distanceFromStart": 235
+      }
+    ],
+    "routeType": "semi-express",
+    "operatingHours": {
+      "startTime": "05:30",
+      "endTime": "19:00"
+    },
+    "frequency": 90,
+    "baseFare": 650,
+    "isActive": true
+  }
+]

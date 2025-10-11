@@ -1,0 +1,66 @@
+[
+  {
+    "username": "admin_ntc",
+    "email": "admin@ntc.gov.lk",
+    "password": "Admin123",
+    "fullName": "NTC Administrator",
+    "role": "admin",
+    "contactNumber": "+94112345678",
+    "isActive": true
+  },
+  {
+    "username": "abc_transport",
+    "email": "manager@abctransport.com",
+    "password": "Operator123",
+    "fullName": "Sunil Wickramasinghe",
+    "role": "operator",
+    "contactNumber": "+94771234567",
+    "companyName": "ABC Transport (Pvt) Ltd",
+    "licenseNumber": "OP001234",
+    "isActive": true
+  },
+  {
+    "username": "express_travels",
+    "email": "operations@expresstravels.lk",
+    "password": "Operator123",
+    "fullName": "Kamal Perera",
+    "role": "operator",
+    "contactNumber": "+94772345678",
+    "companyName": "Express Travels Lanka",
+    "licenseNumber": "OP005678",
+    "isActive": true
+  },
+  {
+    "username": "golden_arrow",
+    "email": "fleet@goldenarrow.lk",
+    "password": "Operator123",
+    "fullName": "Nimal Fernando",
+    "role": "operator",
+    "contactNumber": "+94773456789",
+    "companyName": "Golden Arrow Express",
+    "licenseNumber": "OP009876",
+    "isActive": true
+  },
+  {
+    "username": "city_transport",
+    "email": "admin@citytransport.com",
+    "password": "Operator123",
+    "fullName": "Priyanka Silva",
+    "role": "operator",
+    "contactNumber": "+94774567890",
+    "companyName": "City Transport Solutions",
+    "licenseNumber": "OP543210",
+    "isActive": true
+  },
+  {
+    "username": "island_express",
+    "email": "manager@islandexpress.lk",
+    "password": "Operator123",
+    "fullName": "Chaminda Jayawardena",
+    "role": "operator",
+    "contactNumber": "+94775678901",
+    "companyName": "Island Express Buses",
+    "licenseNumber": "OP111222",
+    "isActive": true
+  }
+]
