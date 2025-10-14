@@ -81,18 +81,52 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           port: 22
           script: |
+            # Detect OS and set package manager
+            if command -v apt &> /dev/null; then
+              PKG_MANAGER="apt"
+              UPDATE_CMD="sudo apt update"
+              INSTALL_CMD="sudo apt install -y"
+              DOCKER_PKG="docker.io"
+              AWS_CLI_PKG="awscli"
+              USER_NAME="ubuntu"
+            elif command -v yum &> /dev/null; then
+              PKG_MANAGER="yum"
+              UPDATE_CMD="sudo yum update -y"
+              INSTALL_CMD="sudo yum install -y"
+              DOCKER_PKG="docker"
+              AWS_CLI_PKG="awscli"
+              USER_NAME="ec2-user"
+            else
+              echo "Unsupported OS"
+              exit 1
+            fi
+            
             # Install Docker if not present
             if ! command -v docker &> /dev/null; then
-              sudo yum update -y
-              sudo yum install -y docker
+              echo "Installing Docker..."
+              $UPDATE_CMD
+              $INSTALL_CMD $DOCKER_PKG
               sudo systemctl start docker
               sudo systemctl enable docker
-              sudo usermod -a -G docker ec2-user
+              sudo usermod -a -G docker $USER_NAME
+              echo "Docker installed successfully"
             fi
             
             # Install AWS CLI if not present
             if ! command -v aws &> /dev/null; then
-              sudo yum install -y awscli
+              echo "Installing AWS CLI..."
+              if [ "$PKG_MANAGER" = "apt" ]; then
+                # For Ubuntu/Debian, install AWS CLI v2
+                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                sudo apt install -y unzip
+                unzip awscliv2.zip
+                sudo ./aws/install
+                rm -rf aws awscliv2.zip
+              else
+                # For Amazon Linux/CentOS
+                $INSTALL_CMD $AWS_CLI_PKG
+              fi
+              echo "AWS CLI installed successfully"
             fi
             
             # Configure AWS CLI
@@ -132,7 +166,23 @@ jobs:
             sleep 15
             
             # Health check
-            curl -f http://localhost:3000/api/health || exit 1
+            echo "Checking if application is running..."
+            for i in {1..10}; do
+              if curl -f http://localhost:3000/health 2>/dev/null; then
+                echo "Health check passed!"
+                break
+              else
+                echo "Attempt $i/10: Waiting for application to start..."
+                sleep 10
+              fi
+            done
+            
+            # Final health check
+            if ! curl -f http://localhost:3000/health 2>/dev/null; then
+              echo "Health check failed after 10 attempts"
+              docker logs bus-tracking-api --tail 50
+              exit 1
+            fi
             
             # Clean up old images
             docker image prune -f
