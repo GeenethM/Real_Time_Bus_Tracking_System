@@ -38,11 +38,11 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/api',
+        url: 'http://localhost:3000',
         description: 'Development server'
       },
       {
-        url: 'https://your-deployed-api.com/api',
+        url: 'https://your-deployed-api.com',
         description: 'Production server'
       }
     ],

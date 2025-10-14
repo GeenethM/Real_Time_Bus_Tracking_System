@@ -91,6 +91,7 @@ const tripSchema = new mongoose.Schema({
     validate: {
       validator: function(actualDeparture) {
         if (!actualDeparture) return true; // Optional field
+        console.log('Time of  actualDeparture:', actualDeparture);
         return actualDeparture >= this.departureTime - (30 * 60 * 1000); // Allow 30 min early
       },
       message: 'Actual departure cannot be more than 30 minutes early'
