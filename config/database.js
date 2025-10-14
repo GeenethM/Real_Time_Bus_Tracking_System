@@ -10,9 +10,11 @@ dotenv.config();
  */
 class DatabaseConfig {
   constructor() {
-    this.connectionString = process.env.NODE_ENV === 'production' 
-      ? process.env.MONGODB_URI_PROD 
-      : process.env.MONGODB_URI || 'mongodb://localhost:27017/bus_tracking_system';
+    this.connectionString = process.env.MONGODB_URI || process.env.MONGODB_URI_PROD || 'mongodb://localhost:27017/bus_tracking_system';
+    
+    if (!this.connectionString || this.connectionString === 'mongodb://localhost:27017/bus_tracking_system') {
+      console.warn('⚠️  Warning: Using default local MongoDB connection string. Make sure MONGODB_URI is set for production.');
+    }
   }
 
   /**

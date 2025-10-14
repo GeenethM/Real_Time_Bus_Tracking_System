@@ -157,6 +157,11 @@ jobs:
             # Pull latest image
             $DOCKER_CMD pull ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
             
+            # Debug environment variables (without exposing sensitive data)
+            echo "Checking environment variables..."
+            echo "MONGODB_URI is set: $([ -n "${{ secrets.MONGODB_URI }}" ] && echo "YES" || echo "NO")"
+            echo "JWT_SECRET is set: $([ -n "${{ secrets.JWT_SECRET }}" ] && echo "YES" || echo "NO")"
+            
             # Run new container
             $DOCKER_CMD run -d \
               --name bus-tracking-api \
@@ -174,6 +179,10 @@ jobs:
               -e CORS_ORIGIN="${{ secrets.CORS_ORIGIN }}" \
               -e LOG_LEVEL="${{ secrets.LOG_LEVEL }}" \
               ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+              
+            echo "Container started. Checking environment inside container..."
+            sleep 5
+            $DOCKER_CMD exec bus-tracking-api printenv | grep -E "(NODE_ENV|MONGODB_URI|JWT_SECRET)" | sed 's/=.*/=***/' || echo "Could not check container environment"
             
             # Wait for container to start
             sleep 15
