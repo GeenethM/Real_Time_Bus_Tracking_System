@@ -220,34 +220,11 @@ jobs:
               sudo systemctl enable nginx
             fi
             
-            # Create Nginx configuration for geenethrtbtrack.me
+            # Create initial HTTP-only Nginx configuration
             sudo tee /etc/nginx/sites-available/bus-tracking-api << 'EOF'
             server {
                 listen 80;
                 server_name geenethrtbtrack.me www.geenethrtbtrack.me;
-                
-                # Redirect HTTP to HTTPS
-                return 301 https://$server_name$request_uri;
-            }
-            
-            server {
-                listen 443 ssl http2;
-                server_name geenethrtbtrack.me www.geenethrtbtrack.me;
-                
-                # SSL Configuration (will be updated by certbot)
-                ssl_certificate /etc/letsencrypt/live/geenethrtbtrack.me/fullchain.pem;
-                ssl_certificate_key /etc/letsencrypt/live/geenethrtbtrack.me/privkey.pem;
-                
-                # Modern SSL settings
-                ssl_protocols TLSv1.2 TLSv1.3;
-                ssl_ciphers HIGH:!aNULL:!MD5;
-                ssl_prefer_server_ciphers on;
-                
-                # Security headers
-                add_header X-Frame-Options DENY;
-                add_header X-Content-Type-Options nosniff;
-                add_header X-XSS-Protection "1; mode=block";
-                add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
                 
                 # Proxy to Node.js API
                 location / {
@@ -266,6 +243,11 @@ jobs:
                     proxy_send_timeout 60s;
                     proxy_read_timeout 60s;
                 }
+                
+                # Let's Encrypt challenge location
+                location /.well-known/acme-challenge/ {
+                    root /var/www/html;
+                }
             }
             EOF
             
@@ -273,16 +255,32 @@ jobs:
             sudo rm -f /etc/nginx/sites-enabled/default
             sudo ln -sf /etc/nginx/sites-available/bus-tracking-api /etc/nginx/sites-enabled/
             
-            # Test Nginx configuration (without SSL first)
+            # Create web root for Let's Encrypt
+            sudo mkdir -p /var/www/html
+            
+            # Test Nginx configuration
             sudo nginx -t
             
-            # Start Nginx
+            # Start Nginx with HTTP-only config
             sudo systemctl start nginx
             sudo systemctl reload nginx
             
+            # Test HTTP first
+            echo "🧪 Testing HTTP setup..."
+            sleep 5
+            if curl -f http://geenethrtbtrack.me/health 2>/dev/null; then
+              echo "✅ HTTP is working!"
+            else
+              echo "❌ HTTP test failed, checking logs..."
+              sudo tail -n 20 /var/log/nginx/error.log
+              exit 1
+            fi
+            
             # Get Let's Encrypt SSL certificate
             echo "🔒 Getting SSL certificate from Let's Encrypt..."
-            sudo certbot --nginx -d geenethrtbtrack.me -d www.geenethrtbtrack.me --non-interactive --agree-tos --email ${{ secrets.SSL_EMAIL || 'admin@geenethrtbtrack.me' }} --redirect
+            sudo certbot --nginx -d geenethrtbtrack.me -d www.geenethrtbtrack.me --non-interactive --agree-tos --email admin@geenethrtbtrack.me --redirect
+            
+            # Certbot automatically updates the Nginx config with SSL settings
             
             # Set up auto-renewal
             sudo systemctl enable certbot.timer
